@@ -1,0 +1,1 @@
+{"nfs":{"/vagrant":{"type":"nfs","guestpath":"/vagrant","hostpath":"/Users/andy/Sites/movie-list","disabled":false,"map_uid":502,"map_gid":20,"nfs_udp":true,"nfs_version":3,"uuid":"1699634586"}}}

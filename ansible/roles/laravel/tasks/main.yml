@@ -1,0 +1,8 @@
+# https://www.digitalocean.com/community/tutorials/how-to-deploy-multiple-php-applications-using-ansible-on-ubuntu-14-04
+
+- name: Run artisan migrate
+  shell: php /vagrant/artisan migrate --force
+
+- name: Run artisan database seeders
+  shell: php /vagrant/artisan db:seed
+  when: laravel.env == 'development'
