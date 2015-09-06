@@ -1,0 +1,22 @@
+{
+  "name": "movie-list",
+  "version": "1.0.0",
+  "authors": [
+    "Andy Wright <atwright147@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-route": "~1.4.5",
+    "bootstrap": "~3.3.5",
+    "lodash": "~3.10.1"
+  }
+}
