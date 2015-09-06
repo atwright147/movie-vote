@@ -1,0 +1,18 @@
+<p>Movies</p>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Year</th>
+			<th>Votes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="item in movies">
+			<td>{{item.title}}</td>
+			<td>{{item.year}}</td>
+			<td>{{item.votes}}</td>
+		</tr>
+	</tbody>
+</table>

@@ -42,3 +42,10 @@ app.factory('_', function() {
 app.controller('HomeController', function($rootScope, $scope) {
 	$rootScope.title = "Andy's Movies";
 });
+app.controller('MoviesController', function($rootScope, $scope, $http) {
+	$rootScope.title = "Andy's Movies";
+
+	$http.get('/api/v1/movies').then(function(response) {
+		$scope.movies = response.data;
+	});
+});
