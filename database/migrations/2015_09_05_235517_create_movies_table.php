@@ -19,8 +19,11 @@ class CreateMoviesTable extends Migration
             $table->smallInteger('year');
             $table->index(['title', 'year']);
 
-            $table->smallInteger('votes');
-            $table->index('votes');
+            $table->smallInteger('votes_up');
+            $table->index('votes_up');
+
+            $table->smallInteger('votes_down');
+            $table->index('votes_down');
 
             $table->timestamps();
         });

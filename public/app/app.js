@@ -48,4 +48,8 @@ app.controller('MoviesController', function($rootScope, $scope, $http) {
 	$http.get('/api/v1/movies').then(function(response) {
 		$scope.movies = response.data;
 	});
+
+	$scope.vote = function(id, direction) {
+		$http.post('/api/v1/movies/vote', {"id": id, "direction": direction});
+	};
 });

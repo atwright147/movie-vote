@@ -5,14 +5,23 @@
 		<tr>
 			<th>Title</th>
 			<th>Year</th>
-			<th>Votes</th>
+			<th>Votes Up</th>
+			<th>Votes Down</th>
+			<th>Actions</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="item in movies">
 			<td>{{item.title}}</td>
 			<td>{{item.year}}</td>
-			<td>{{item.votes}}</td>
+			<td>{{item.votes_up}}</td>
+			<td>{{item.votes_down}}</td>
+			<td>
+				<div class="btn-group">
+					<button class="btn btn-default" ng-click="vote(item.id, 'up')"><i class="fa fa-thumbs-o-up"></i></button>
+					<button class="btn btn-default" ng-click="vote(item.id, 'down')"><i class="fa fa-thumbs-o-down"></i></button>
+				</div>
+			</td>
 		</tr>
 	</tbody>
 </table>

@@ -17,7 +17,8 @@ class MoviesTableSeeder extends Seeder
 			\App\Movie::create([
 				'title' => $faker->firstName,
 				'year'  => $faker->date('Y'),
-				'votes' => rand(0, 999),
+				'votes_up' => rand(0, 10),
+				'votes_down' => rand(0, 10),
 			]);
 		}
 

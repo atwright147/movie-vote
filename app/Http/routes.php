@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -19,10 +21,33 @@ $app->get('/', function () use ($app) {
 | The API
 */
 $app->group(['prefix' => 'api/v1'], function ($app) {
-	$app->post('movies', function ()  {
+	$app->post('movies', function (Request $request)  {
 	    $movie = new Movie;
 
 	});
+
+	$app->post('movies/vote', function (Request $request)  {
+		$input = $request->all();
+	    $movie = App\Movie::find($input['id']);
+
+	    switch($input['direction']) {
+	    	case 'up':
+	    		$movie->increment('votes_up');
+	    		break;
+
+	    	case 'down':
+	    		$movie->increment('votes_down');
+	    		break;
+	    }
+
+		if ($movie->save()) {
+			return response()->json('success', 200);
+		} else {
+			return response()->json('error', 500);
+		}
+
+	});
+
 	$app->get('movies', function ()  {
 	    return App\Movie::all();
 	});
