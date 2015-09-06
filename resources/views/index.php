@@ -5,6 +5,7 @@
 	<title>{{title}}</title>
 	<link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 	<div class="container">
