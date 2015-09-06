@@ -12,5 +12,18 @@
 */
 
 $app->get('/', function () use ($app) {
-    return $app->welcome();
+    return view('index');
+});
+
+/*
+| The API
+*/
+$app->group(['prefix' => 'api/v1'], function ($app) {
+	$app->post('movies', function ()  {
+	    $movie = new Movie;
+
+	});
+	$app->get('movies', function ()  {
+	    return App\Movie::all();
+	});
 });
