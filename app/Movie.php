@@ -2,5 +2,13 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-// final class Quote extends Model {}
-final class Movie extends Model {}
+final class Movie extends Model {
+
+	protected $guarded = array('id');
+
+	public function votes()
+	{
+		return $this->hasMany('App\Vote');
+	}
+
+}

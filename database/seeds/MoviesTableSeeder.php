@@ -13,12 +13,10 @@ class MoviesTableSeeder extends Seeder
     {
 		$faker = Faker\Factory::create('en_GB');
 
-		for ($i = 0; $i < rand(0, 999); $i++) {
+		for ($i = 0; $i < 50; $i++) {
 			\App\Movie::create([
 				'title' => $faker->firstName,
 				'year'  => $faker->date('Y'),
-				'votes_up' => rand(0, 10),
-				'votes_down' => rand(0, 10),
 			]);
 		}
 
