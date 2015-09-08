@@ -45,7 +45,7 @@ app.controller('HomeController', function($rootScope, $scope) {
 app.controller('MoviesController', function($rootScope, $scope, $http) {
 	$rootScope.title = "Andy's Movies";
 
-	$http.get('/api/v1/movies').then(function(response) {
+	$http.get('/api/v1/movies/1').then(function(response) {
 		$scope.movies = response.data;
 	});
 
