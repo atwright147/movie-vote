@@ -22,8 +22,7 @@ $app->get('/', function () use ($app) {
 */
 $app->group(['prefix' => 'api/v1'], function ($app) {
 	$app->post('movies', function (Request $request)  {
-	    $movie = new Movie;
-
+		$movie = new Movie;
 	});
 
 	$app->post('movies/vote', function (Request $request)  {
