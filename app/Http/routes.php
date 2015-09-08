@@ -47,7 +47,9 @@ $app->group(['prefix' => 'api/v1'], function ($app) {
 
 	});
 
-	$app->get('movies', function ()  {
-	    return App\Movie::all();
+	$app->get('movies/{id}', function($id) {
+		return App\Movie::with(['votes' => function($query) use ($id) {
+			$query->where('user_id', $id);
+		}])->get();
 	});
 });
