@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         // empty all tables
         $tables = [
             'movies',
+            'votes',
         ];
         foreach ($tables as $table) {
             DB::table($table)->truncate();
