@@ -49,7 +49,21 @@ app.controller('MoviesController', function($rootScope, $scope, $http) {
 		$scope.movies = response.data;
 	});
 
-	$scope.vote = function(id, direction) {
-		$http.post('/api/v1/movies/vote', {"id": id, "direction": direction});
+	$scope.vote = function(item) {
+		$http.post('/api/v1/movies/vote', {"id": item.id})
+			.then(function(response) {
+				try {
+					item.votes[0].vote_up = item.votes[0].vote_up || 0;
+				}
+				catch (e) {
+					item.votes = [{'vote_up': 0}]
+				}
+
+				if (item && item.votes[0]) {
+					item.votes[0].vote_up = !!item.votes[0].vote_up ? 0 : 1;
+				} else {
+					item.votes[0].vote_up = 1;
+				}
+			});
 	};
 });

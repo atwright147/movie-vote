@@ -21,8 +21,8 @@ class CreateVotesTable extends Migration
             $table->integer('movie_id');
             $table->index('movie_id');
 
-            $table->integer('vote_up');
-            $table->integer('vote_down');
+            $table->integer('vote_up')->default(0);
+            $table->integer('vote_down')->default(0);
             $table->timestamps();
         });
     }

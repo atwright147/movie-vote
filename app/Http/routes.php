@@ -28,20 +28,27 @@ $app->group(['prefix' => 'api/v1'], function ($app) {
 	});
 
 	$app->post('movies/vote', function (Request $request)  {
+		$userId = 1;
 		$input = $request->all();
-	    $movie = App\Movie::find($input['id']);
 
-	    switch($input['direction']) {
-	    	case 'up':
-	    		$movie->increment('votes_up');
-	    		break;
+		$vote = App\Vote::where('movie_id', '=', $input['id'])->where('user_id', '=', $userId)->first();
 
-	    	case 'down':
-	    		$movie->increment('votes_down');
-	    		break;
-	    }
+		// invert the existing vote
+		if (count($vote)) {
+			if ($vote->vote_up) {
+				$vote->vote_up = 0;
+			} else {
+				$vote->vote_up = 1;
+			}
+		} else {
+			// dd('new');
+			$vote = new App\Vote;
+			$vote->user_id = $userId;
+			$vote->movie_id = $input['id'];
+			$vote->vote_up = 1;
+		}
 
-		if ($movie->save()) {
+		if ($vote->save()) {
 			return response()->json('success', 200);
 		} else {
 			return response()->json('error', 500);

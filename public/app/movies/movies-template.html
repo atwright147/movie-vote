@@ -13,10 +13,7 @@
 			<td>{{item.title}}</td>
 			<td>{{item.year}}</td>
 			<td>
-				<div class="btn-group">
-					<button class="btn btn-default" ng-click="vote(item.id, 'up')"><i ng-class="!!item.votes[0].vote_up ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up'"></i></button>
-					<button class="btn btn-default" ng-click="vote(item.id, 'down')"><i ng-class="!!item.votes[0].vote_down ? 'fa fa-thumbs-down' : 'fa fa-thumbs-o-down'"></i></button>
-				</div>
+				<button class="btn btn-default" ng-click="vote(item)"><i ng-class="!!item.votes[0].vote_up ? 'fa fa-thumbs-up' : 'fa fa-thumbs-o-up'"></i></button>
 			</td>
 		</tr>
 	</tbody>
