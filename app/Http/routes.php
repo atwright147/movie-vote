@@ -22,7 +22,9 @@ $app->get('/', function () use ($app) {
 */
 $app->group(['prefix' => 'api/v1'], function ($app) {
 	$app->post('movies', function (Request $request)  {
-		$movie = new Movie;
+		$input = $request->all();
+		// dd($input);
+		DB::table('movies')->insert($input);
 	});
 
 	$app->post('movies/vote', function (Request $request)  {
