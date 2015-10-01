@@ -1,35 +1,33 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
 |
 */
 
-$app->get('/', function () use ($app) {
+Route::get('/', function () {
     return view('index');
 });
 
 /*
 | The API
 */
-$app->group(['prefix' => 'api/v1'], function ($app) {
-	$app->post('movies', function (Request $request)  {
+Route::group(['prefix' => 'api/v1'], function ($app) {
+	Route::post('movies', function (Request $request)  {
 		$input = $request->all();
 		// dd($input);
 		DB::table('movies')->insert($input);
 	});
 
-	$app->post('movies/vote', function (Request $request)  {
+	Route::post('movies/vote', function (Request $request)  {
 		$userId = 1;
-		$input = $request->all();
+		$input = Input::all();
 
 		$vote = App\Vote::where('movie_id', '=', $input['id'])->where('user_id', '=', $userId)->first();
 
@@ -56,7 +54,7 @@ $app->group(['prefix' => 'api/v1'], function ($app) {
 
 	});
 
-	$app->get('movies/{id}', function($id) {
+	Route::get('movies/{id}', function($id) {
 		return App\Movie::with(['votes' => function($query) use ($id) {
 			$query->where('user_id', $id);
 		}])->get();
