@@ -2,7 +2,7 @@
 <html lang="en" ng-app="app">
 <head>
 	<meta charset="UTF-8">
-	<title>{{title}}</title>
+	<title>@{{title}}</title>
 	<link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.min.css">
@@ -10,8 +10,10 @@
 <body>
 	<div class="container">
 		<div class="page-header">
-			<h1>{{title}}</h1>
+			<h1>@{{title}}</h1>
 		</div>
+		<a ng-href="/auth/facebook">Login with Facebook</a>
+		<pre>{{\Auth::user()}}</pre>
 
 		<ng-view></ng-view>
 	</div>

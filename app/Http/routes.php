@@ -1,5 +1,7 @@
 <?php
 
+use Socialite;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,7 +14,37 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+	// $user = Socialite::driver('facebook')->user();
+	// dd($user->getId());
+	// $userId = $user->id;
+	// return view('index')->with('userId', $userId);
+	return view('index');
+});
+
+Route::get('/auth/facebook', function() {
+	return Socialite::driver('facebook')->redirect();
+});
+Route::get('/callback/facebook', function(App\User $user) {
+	//$user = Socialite::driver('facebook')->user();
+
+
+	$socialite = Socialite::driver('facebook')->user();
+	//dd($user);
+
+	if (App\User::where('email', '=', $socialite->email)->first()){
+		$checkUser = App\User::where('email', '=', $socialite->email)->first();
+		Auth::login($checkUser);
+		return redirect('/');
+	} 
+
+	$user->facebook_id = $socialite->getId();
+	$user->name        = $socialite->getName();
+	$user->email       = $socialite->getEmail();
+	$user->avatar      = $socialite->getAvatar();
+	$user->save();
+
+	Auth::login($user);
+	return redirect('/');
 });
 
 /*
@@ -26,8 +58,8 @@ Route::group(['prefix' => 'api/v1'], function ($app) {
 	});
 
 	Route::post('movies/vote', function (Request $request)  {
-		$userId = 1;
-		$input = Input::all();
+		$userId = \Auth::user()->id;
+		$input  = Input::all();
 
 		$vote = App\Vote::where('movie_id', '=', $input['id'])->where('user_id', '=', $userId)->first();
 
@@ -41,9 +73,9 @@ Route::group(['prefix' => 'api/v1'], function ($app) {
 		} else {
 			// dd('new');
 			$vote = new App\Vote;
-			$vote->user_id = $userId;
+			$vote->user_id  = $userId;
 			$vote->movie_id = $input['id'];
-			$vote->vote_up = 1;
+			$vote->vote_up  = 1;
 		}
 
 		if ($vote->save()) {
@@ -54,9 +86,10 @@ Route::group(['prefix' => 'api/v1'], function ($app) {
 
 	});
 
-	Route::get('movies/{id}', function($id) {
-		return App\Movie::with(['votes' => function($query) use ($id) {
-			$query->where('user_id', $id);
+	Route::get('movies', function() {
+		$userId = \Auth::user()->id;
+		return App\Movie::with(['votes' => function($query) use ($userId) {
+			$query->where('user_id', $userId);
 		}])->get();
 	});
 });
