@@ -25,11 +25,9 @@ Route::get('/auth/facebook', function() {
 	return Socialite::driver('facebook')->redirect();
 });
 Route::get('/callback/facebook', function(App\User $user) {
-	//$user = Socialite::driver('facebook')->user();
 
-
+	// from: http://stackoverflow.com/a/30825601/633056
 	$socialite = Socialite::driver('facebook')->user();
-	//dd($user);
 
 	if (App\User::where('email', '=', $socialite->email)->first()){
 		$checkUser = App\User::where('email', '=', $socialite->email)->first();
