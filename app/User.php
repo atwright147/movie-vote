@@ -36,4 +36,16 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    protected $casts = [
+        'id' => 'integer',
+        'admin' => 'integer',
+    ];
+
+    // FROM: http://laravelsnippets.com/snippets/admin-route-filter
+    public function isAdmin()
+    {
+        return (bool) $this->attributes['admin'];
+    }
+
 }
