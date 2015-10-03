@@ -49,7 +49,7 @@ Route::get('/auth/logout', function() {
 /*
 | The API
 */
-Route::group(['prefix' => 'api/v1'], function ($app) {
+Route::group(['prefix' => 'api/v1', 'middleware' => 'auth'], function ($app) {
 	Route::post('movies', function (Request $request)  {
 		$input = $request->all();
 		// dd($input);
