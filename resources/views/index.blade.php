@@ -12,7 +12,8 @@
 		<div class="page-header">
 			<h1>@{{title}}</h1>
 		</div>
-		<a ng-href="/auth/facebook">Login with Facebook</a>
+		<a ng-href="/auth/facebook">Login with Facebook</a><br>
+		<a ng-href="/auth/logout">Logout</a>
 		<pre>{{\Auth::user()}}</pre>
 
 		<ng-view></ng-view>

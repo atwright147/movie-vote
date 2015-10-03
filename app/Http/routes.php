@@ -44,6 +44,9 @@ Route::get('/callback/facebook', function(App\User $user) {
 	Auth::login($user);
 	return redirect('/');
 });
+Route::get('/auth/logout', function() {
+	Auth::logout();
+});
 
 /*
 | The API
