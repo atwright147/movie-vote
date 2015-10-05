@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
+	@include('partials.nav')
 	<div class="container">
 		<div class="page-header">
 			<h1>@{{title}}</h1>
