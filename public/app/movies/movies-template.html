@@ -1,4 +1,11 @@
-<p>Movies</p>
+<div class="well">
+	<form>
+		<div class="form-group">
+			<label for="inputEmail3" class="control-label">Filter</label>
+			<input type="text" class="form-control" placeholder="Filter string" ng-model="filmter">
+		</div>
+	</form>
+</div>
 
 <table class="table">
 	<thead>
@@ -9,7 +16,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="item in movies">
+		<tr ng-repeat="item in movies | filter: {title: filmter}">
 			<td>{{item.title}}</td>
 			<td>{{item.year}}</td>
 			<td>
