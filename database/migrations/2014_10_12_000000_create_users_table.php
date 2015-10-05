@@ -27,6 +27,17 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('admin');
             $table->timestamps();
         });
+
+        // add a default admin user
+        $timestamps = [
+            'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at' => \Carbon\Carbon::now()->toDateTimeString()
+        ];
+
+        DB::table('users')->insert(
+            Config::get('seeding.adminUser') + $timestamps
+        );
+
     }
 
     /**
